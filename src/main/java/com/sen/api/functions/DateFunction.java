@@ -12,14 +12,13 @@ public class DateFunction  implements Function{
 		if (args.length == 0 ||StringUtil.isEmpty(args[0])) {
 			return String.format("%s", new Date().getTime());
 		} else {
-			return getCurrentDate("yyyy-MM-dd");
+			return getCurrentDate();
 		}
 	}
 
-	private String getCurrentDate(String pattern) {
-		SimpleDateFormat format = new SimpleDateFormat(pattern);
-		String str = format.format(new Date());
-		return str;
+	private String getCurrentDate() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(new Date());
 	}
 	
 	@Override

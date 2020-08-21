@@ -33,7 +33,7 @@ public class FileUtil {
 		String[] fileConfArr = fileConf.split(";");// 多个配置‘;’分开
 
 		List<File> list = new ArrayList<File>();
-		if (fileConfArr != null && fileConfArr.length > 0) {
+		if (fileConfArr.length > 0) {
 			for (String conftemp : fileConfArr) {
 				int at = conftemp.lastIndexOf("/");
 				File file = null;
@@ -73,8 +73,7 @@ public class FileUtil {
 		}
 		Set set = new HashSet();
 		List newList = new ArrayList();
-		for (Iterator iter = list.iterator(); iter.hasNext();) {
-			Object element = iter.next();
+		for (Object element : list) {
 			if (set.add(element)) {
 				newList.add(element);
 			}

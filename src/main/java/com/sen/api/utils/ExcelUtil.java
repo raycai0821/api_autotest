@@ -155,26 +155,25 @@ public class ExcelUtil {
 			if (String.class.equals(param)) {
 				method.invoke(obj, value);
 			} else if (Integer.class.equals(param) || int.class.equals(param)) {
-				if(value.toString()==""){
+				if(value.toString().equals("")){
 					value=0;
 				}
 				method.invoke(obj, new BigDecimal(value.toString()).intValue());
 			} else if (Long.class.equals(param) || long.class.equals(param)) {	
-				if(value.toString()==""){
+				if(value.toString().equals("")){
 					value=0;
 				}
 				method.invoke(obj, new BigDecimal(value.toString()).longValue());
 			} else if (Short.class.equals(param) || short.class.equals(param)) {
-				if(value.toString()==""){
+				if(value.toString().equals("")){
 					value=0;
 				}
 				method.invoke(obj, new BigDecimal(value.toString()).shortValue());
 			} else if (Boolean.class.equals(param)
 					|| boolean.class.equals(param)) {
-				method.invoke(obj, Boolean.valueOf(value.toString())
+				method.invoke(obj, Boolean.parseBoolean(value.toString())
 						|| value.toString().toLowerCase().equals("y"));
-			} else if (JSONObject.class.equals(param)
-					|| JSONObject.class.equals(param)) {
+			} else if (JSONObject.class.equals(param)) {
 				method.invoke(obj, JSONObject.parseObject(value.toString()));
 			}else {
 				// Date

@@ -40,7 +40,7 @@ public class RandomUtil {
 	 */
 	public static String getRandomText(int length) {
 		Random random = new Random();
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			int randomNum = random.nextInt(2);
 			char ch = 0 ;
@@ -77,7 +77,7 @@ public class RandomUtil {
 
 	
 	public static String getRandomArr(int arrLength, int length, boolean flag) {
-		StringBuffer sBuffer = new StringBuffer();
+		StringBuilder sBuffer = new StringBuilder();
 		for (int i = 0; i < arrLength; i++) {
 			sBuffer.append(getRandom(length, flag)).append(",");
 		}
@@ -92,7 +92,7 @@ public class RandomUtil {
 	 * @return
 	 */
 	public static String generateStrArr(int arrLength, String paramStr) {
-		StringBuffer sBuffer = new StringBuffer();
+		StringBuilder sBuffer = new StringBuilder();
 		for (int i = 0; i < arrLength; i++) {
 			sBuffer.append("\"").append(paramStr).append("\"").append(",");
 		}
@@ -100,7 +100,7 @@ public class RandomUtil {
 		return sBuffer.toString().substring(0, leng-1);
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println(RandomUtil.getRandom(6,false));
 		System.out.println(RandomUtil.getRandom(6,false));
 	}

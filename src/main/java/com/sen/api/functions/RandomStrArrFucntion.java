@@ -14,14 +14,14 @@ public class RandomStrArrFucntion implements Function{
 		int length = 6;// 默认参数长度为6
 		boolean flag = false;// 默认为false
 		if (len == 1) {
-			arrLength = Integer.valueOf(args[0]);
+			arrLength = Integer.parseInt(args[0]);
 		} else if (len == 2) {
-			arrLength = Integer.valueOf(args[0]);
-			length = Integer.valueOf(args[1]);
+			arrLength = Integer.parseInt(args[0]);
+			length = Integer.parseInt(args[1]);
 		} else if (len == 3) {
-			arrLength = Integer.valueOf(args[0]);
-			length = Integer.valueOf(args[1]);
-			flag = Boolean.valueOf(args[1]);
+			arrLength = Integer.parseInt(args[0]);
+			length = Integer.parseInt(args[1]);
+			flag = Boolean.parseBoolean(args[1]);
 		}
 		return RandomUtil.getRandomArr(arrLength, length, flag);
 	}

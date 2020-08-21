@@ -38,12 +38,12 @@ public class ApiConfig {
 			ReportUtil.setReportName(projectEle.getTextTrim());
 		}
 	}
-	private String rootUrl;
+	private final String rootUrl;
 	
 	
-	private Map<String,String> params = new HashMap<String, String>();
+	private final Map<String,String> params = new HashMap<String, String>();
 	
-	private Map<String,String> headers = new HashMap<String, String>();
+	private final Map<String,String> headers = new HashMap<String, String>();
 
 	public String getRootUrl() {
 		return rootUrl;

@@ -3,10 +3,10 @@
     <rootUrl>http://apis.baidu.com</rootUrl>
     <headers>
         <!-- 配置为自己的参数 -->
-        <header name="apikey" value="123456"></header>
+        <header name="apikey" value="123456"/>
     </headers>
     <params>
-    	<param name="test" value="value"></param>
+        <param name="test" value="value"/>
     </params>
     <project_name>接口自动化测试报告demo</project_name>
 </root>

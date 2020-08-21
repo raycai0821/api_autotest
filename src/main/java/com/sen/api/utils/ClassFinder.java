@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClassFinder {
 
@@ -43,7 +44,7 @@ public class ClassFinder {
 //      URL url = classloader.getResource(path);  
 //      return getClasses(new File(url.getFile()), pk);  
       try {
-			String dirPath = URLDecoder.decode(classloader.getResource(path).getPath(),"utf-8");
+			String dirPath = URLDecoder.decode(Objects.requireNonNull(classloader.getResource(path)).getPath(),"utf-8");
 			return getClasses(new File(dirPath), pk);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -65,7 +66,7 @@ public class ClassFinder {
         if (!dir.exists()) {  
             return classes;  
         }  
-        for (File f : dir.listFiles()) {  
+        for (File f : Objects.requireNonNull(dir.listFiles())) {
             if (f.isDirectory()) {  
                 classes.addAll(getClasses(f, pk + "." + f.getName()));  
             }  

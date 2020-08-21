@@ -9,7 +9,7 @@ public class RandomTextFunction implements Function{
 	public String execute(String[] args) {
 		int length = 6;// 默认为6
 		if (StringUtil.isNotEmpty(args[0])) {
-			length = Integer.valueOf(args[0]);// 参数是长度
+			length = Integer.parseInt(args[0]);// 参数是长度
 		}
 		return RandomUtil.getRandomText(length);
 	}
