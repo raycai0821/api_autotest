@@ -229,11 +229,9 @@ public class TestBase {
 	 * 
 	 * @param clz
 	 *            需要转换的类
-	 * @param excelPaths
+	 * @param excelPathArr
 	 *            所有excel的路径配置
-	 * @param excelName
-	 *            本次需要过滤的excel文件名
-	 * @param sheetName
+	 * @param sheetNameArr
 	 *            本次需要过滤的sheet名
 	 * @return 返回数据
 	 * @throws DocumentException
