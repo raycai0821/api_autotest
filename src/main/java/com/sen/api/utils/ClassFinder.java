@@ -15,7 +15,7 @@ public class ClassFinder {
     /** 
      * 获取同一路径下所有子类或接口实现类 
      *  
-     * @param intf 
+     * @param cls
      * @return 
      * @throws IOException 
      * @throws ClassNotFoundException 
