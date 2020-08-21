@@ -3,7 +3,7 @@ package com.sen.api.beans;
 /**
  * 基础类
  * 
- * @author chenwx
+ * @author raycai
  *
  */
 public class BaseBean {

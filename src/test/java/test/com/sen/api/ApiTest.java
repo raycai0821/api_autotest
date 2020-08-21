@@ -3,10 +3,12 @@ package test.com.sen.api;
 import com.alibaba.fastjson.JSON;
 import com.sen.api.beans.ApiDataBean;
 import com.sen.api.configs.ApiConfig;
-import com.sen.api.excepions.ErrorRespStatusException;
 import com.sen.api.listeners.AutoTestListener;
 import com.sen.api.listeners.RetryListener;
-import com.sen.api.utils.*;
+import com.sen.api.utils.FileUtil;
+import com.sen.api.utils.RandomUtil;
+import com.sen.api.utils.ReportUtil;
+import com.sen.api.utils.SSLClient;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,8 +24,8 @@ import org.apache.http.util.EntityUtils;
 import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.*;
 import org.testng.annotations.Optional;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.InputStream;
@@ -76,6 +78,7 @@ public class ApiTest extends TestBase {
 	@BeforeSuite
 	public void init(@Optional("api-config.xml") String envName) throws Exception {
 		String configFilePath = Paths.get(System.getProperty("user.dir"), envName).toString();
+		System.out.println("env" + envName);
 		ReportUtil.log("api config path:" + configFilePath);
 		apiConfig = new ApiConfig(configFilePath);
 		// 获取基础数据
@@ -103,7 +106,7 @@ public class ApiTest extends TestBase {
 
 	@Parameters({ "excelPath", "sheetName" })
 	@BeforeTest
-	public void readData(@Optional("case/api-data.xls") String excelPath, @Optional("Sheet1") String sheetName) throws DocumentException {
+	public void readData(@Optional("case/api-data.xls") String excelPath, String sheetName) throws DocumentException {
 		dataList = readExcelData(ApiDataBean.class, excelPath.split(";"),
 				sheetName.split(";"));
 	}

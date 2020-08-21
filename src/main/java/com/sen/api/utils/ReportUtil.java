@@ -5,7 +5,7 @@ import org.testng.Reporter;
 import java.util.Calendar;
 
 public class ReportUtil {
-	private static String reportName = "自动化测试报告";
+	private static String reportName = "HKPOSS-BC开户自动化测试报告";
 
 	private static final String splitTimeAndMsg = "===";
 	public static void log(String msg) {

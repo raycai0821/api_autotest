@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <rootUrl>http://apis.baidu.com</rootUrl>
+    <rootUrl>http://127.0.0.1:8888</rootUrl>
     <headers>
         <!-- 配置为自己的参数 -->
-        <header name="apikey" value="123456"/>
+<!--        <header name="apikey" value="123456"/>-->
     </headers>
     <params>
-        <param name="test" value="value"/>
+<!--        <param name="test" value="value"/>-->
     </params>
     <project_name>接口自动化测试报告demo</project_name>
 </root>
