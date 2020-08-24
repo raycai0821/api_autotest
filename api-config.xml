@@ -3,7 +3,7 @@
     <rootUrl>http://127.0.0.1:8888</rootUrl>
     <headers>
         <!-- 配置为自己的参数 -->
-        <header name="X-Signature" value="123456"/>
+<!--        <header name="X-Signature" value="123456"/>-->
         <header name="X-Merchant" value="123456"/>
     </headers>
     <params>

@@ -5,10 +5,8 @@ import com.sen.api.beans.ApiDataBean;
 import com.sen.api.configs.ApiConfig;
 import com.sen.api.listeners.AutoTestListener;
 import com.sen.api.listeners.RetryListener;
-import com.sen.api.utils.FileUtil;
-import com.sen.api.utils.RandomUtil;
-import com.sen.api.utils.ReportUtil;
-import com.sen.api.utils.SSLClient;
+import com.sen.api.utils.*;
+import com.sun.xml.internal.ws.api.message.HeaderList;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -68,7 +66,14 @@ public class ApiTest extends TestBase {
 	protected List<ApiDataBean> dataList = new ArrayList<ApiDataBean>();
 
 	private static HttpClient client;
-
+	/**
+	 * 请求头
+	 */
+	private static List<Header> headers = new ArrayList<Header>();
+	/**
+	 * 初始化当前执行用例id，用于对每条用例的request进行加密
+	 */
+	private static int caseNum = 0;
 	/**
 	 * 初始化测试数据
 	 *
@@ -89,7 +94,7 @@ public class ApiTest extends TestBase {
 		Map<String, String> params = apiConfig.getParams();
 		setSaveDates(params);
 
-		List<Header> headers = new ArrayList<Header>();
+//		List<Header> headers = new ArrayList<Header>();
 		apiConfig.getHeaders().forEach((key, value) -> {
 			Header header = new BasicHeader(key, value);
 			if(!requestByFormData && key.equalsIgnoreCase("content-type") && value.toLowerCase().contains("form-data")){
@@ -97,7 +102,7 @@ public class ApiTest extends TestBase {
 			}
 			headers.add(header);
 		});
-		publicHeaders = headers.toArray(new Header[headers.size()]);
+//		publicHeaders = headers.toArray(new Header[headers.size()]);
 		client = new SSLClient();
 		client.getParams().setParameter(
 				CoreConnectionPNames.CONNECTION_TIMEOUT, 60000); // 请求超时
@@ -109,11 +114,38 @@ public class ApiTest extends TestBase {
 	public void readData(@Optional("case/api-data.xls") String excelPath, String sheetName) throws DocumentException {
 		dataList = readExcelData(ApiDataBean.class, excelPath.split(";"),
 				sheetName.split(";"));
+		//新的测试用例开始前初始化caseID，为了加签
+		caseNum = 0;
+
+
 	}
 
 	/**
-	 * 过滤数据，run标记为Y的执行。
-	 *
+	 * 添加X-Signaturedata到请求头
+	 */
+	@BeforeMethod
+	public void addSignatureToHeaders(){
+		Header signatureHeader = new BasicHeader("X-Signaturedata", RequestEncyptUtil.encrypt(dataList.get(caseNum).getParam(),"1223"));
+		headers.add(signatureHeader);
+		publicHeaders = headers.toArray(new Header[headers.size()]);
+		caseNum++;
+	}
+
+	/**
+	 * 每次执行完一直去除执行加入的X-Signaturedata
+	 */
+	@AfterMethod
+	public void deleteSignatureFromHeaders(){
+		System.out.println("====11111" + headers );
+		headers.remove(headers.size() -1 );
+		System.out.println("====11111" + headers );
+	}
+
+
+
+	/**
+	 *  * 过滤数据，run标记为Y的执行。
+	 * 			*
 	 * @return
 	 * @throws DocumentException
 	 */
