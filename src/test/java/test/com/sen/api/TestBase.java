@@ -145,6 +145,8 @@ public class TestBase {
 			Pattern pattern = Pattern.compile("([^;]*)=([^;]*)");
 			Matcher m = pattern.matcher(allVerify.trim());
 			while (m.find()) {
+				System.out.println(m.group(1));
+				System.out.println(m.group(2));
 				String actualValue = getBuildValue(sourchData, m.group(1));
 				String exceptValue = getBuildValue(sourchData, m.group(2));
 				ReportUtil.log(String.format("验证转换后的值%s=%s", actualValue,

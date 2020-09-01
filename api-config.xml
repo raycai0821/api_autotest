@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <rootUrl>http://127.0.0.1:8888</rootUrl>
+    <rootUrl>http://api.hkposs.com</rootUrl>
     <headers>
         <!-- 配置为自己的参数 -->
 <!--        <header name="X-Signature" value="123456"/>-->
-        <header name="X-Merchant" value="123456"/>
+        <header name="X-Merchant" value="memberCode1123"/>
+        <header name="Content-Type" value="application/json"/>
+        <header name="Authorization" value="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZW1iZXJDb2RlMTEyMyIsInVybHMiOlsiL2FwaS9wYXltZW50L2J1bGsiLCIvYXBpL2FjY3QvY29sbGVjdGlvbkFjY291bnQvc2V0dXAiLCIvYXBpL3BheW1lbnQvYnVsay9nZXQiLCIvYXBpL2FjY3QvYmFsYW5jZS9xdWVyeSJdLCJleHAiOjE1OTg5NDQ1ODksImlhdCI6MTU5ODk0MTU4OX0.MpNlxSFAAkfmw6Oo2J-jQkWz6QVEgLxREIzU3MxW5SCqb8uI4b5-yMoE59N2OkEqhJ2Kf6mZLgit8Hi84iIyLQ"/>
+
     </headers>
     <params>
-<!--        <param name="test" value="value"/>-->
+       <param name="secretKey" value="1223"/>
     </params>
-    <project_name>接口自动化测试报告demo</project_name>
+    <project_name>HK-BC接口自动化测试报告</project_name>
 </root>
