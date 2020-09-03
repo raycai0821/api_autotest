@@ -63,7 +63,7 @@ public class ApiTest extends TestBase {
 	/**
 	 * 所有api测试用例数据
 	 */
-	protected List<ApiDataBean> dataList = new ArrayList<ApiDataBean>();
+	protected List<ApiDataBean> dataList = new ArrayList<>();
 
 	private static HttpClient client;
 	/**
@@ -73,7 +73,7 @@ public class ApiTest extends TestBase {
 	/**
 	 * 初始化当前执行用例id，用于对每条用例的request进行加密
 	 */
-	private static int caseNum = 0;
+//	private static int caseNum = 0;
 	/**
 	 * 初始化测试数据
 	 *
@@ -111,7 +111,7 @@ public class ApiTest extends TestBase {
 
 	@Parameters({ "excelPath", "sheetName" })
 	@BeforeTest
-	public void readData(@Optional("case/api-data.xls") String excelPath, String sheetName) throws DocumentException {
+	public void readData(@Optional("case/api-data.xls") String excelPath, String sheetName) {
 		dataList = readExcelData(ApiDataBean.class, excelPath.split(";"),
 				sheetName.split(";"));
 		//新的测试用例开始前初始化caseID，为了每个sheet页都初始化
@@ -147,15 +147,14 @@ public class ApiTest extends TestBase {
 	 *  * 过滤数据，run标记为Y的执行。
 	 * 			*
 	 * @return
-	 * @throws DocumentException
 	 */
 	@DataProvider(name = "apiDatas")
-	public Iterator<Object[]> getApiData(ITestContext context)
-			throws DocumentException {
-		List<Object[]> dataProvider = new ArrayList<Object[]>();
+	public Iterator<Object[]> getApiData(ITestContext context) {
+		List<Object[]> dataProvider = new ArrayList<>();
 		for (ApiDataBean data : dataList) {
 			if (data.isRun()) {
 				dataProvider.add(new Object[] { data });
+
 			}
 		}
 		return dataProvider.iterator();
@@ -179,7 +178,7 @@ public class ApiTest extends TestBase {
 			// 执行
 			HttpResponse response = client.execute(method);
 			int responseStatus = response.getStatusLine().getStatusCode();
-			ReportUtil.log("返回状态码："+responseStatus);
+			ReportUtil.log("返回状态码：" + responseStatus);
 			if (apiDataBean.getStatus()!= 0) {
 				Assert.assertEquals(responseStatus, apiDataBean.getStatus(),
 						"返回状态码与预期不符合!");

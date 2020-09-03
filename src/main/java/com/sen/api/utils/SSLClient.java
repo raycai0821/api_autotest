@@ -19,11 +19,11 @@ public class SSLClient extends DefaultHttpClient {
 		SSLContext ctx = SSLContext.getInstance("TLS");
 		X509TrustManager tm = new X509TrustManager() {
 			public void checkClientTrusted(X509Certificate[] chain,
-					String authType) throws CertificateException {
+					String authType) {
 			}
 
 			public void checkServerTrusted(X509Certificate[] chain,
-					String authType) throws CertificateException {
+					String authType) {
 			}
 
 			public X509Certificate[] getAcceptedIssuers() {

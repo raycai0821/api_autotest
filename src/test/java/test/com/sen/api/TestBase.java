@@ -25,7 +25,7 @@ public class TestBase {
 	/**
 	 * 公共参数数据池（全局可用）
 	 */
-	private static Map<String, String> saveDatas = new HashMap<String, String>();
+	private static Map<String, String> saveDatas = new HashMap<>();
 
 	/**
 	 * 替换符，如果数据中包含“${}”则会被替换成公共参数中存储的数据
@@ -236,20 +236,19 @@ public class TestBase {
 	 * @param sheetNameArr
 	 *            本次需要过滤的sheet名
 	 * @return 返回数据
-	 * @throws DocumentException
 	 */
 	protected <T extends BaseBean> List<T> readExcelData(Class<T> clz,
-			String[] excelPathArr, String[] sheetNameArr)
-			throws DocumentException {
-		List<T> allExcelData = new ArrayList<T>();// excel文件數組
-		List<T> temArrayList = new ArrayList<T>();
+			String[] excelPathArr, String[] sheetNameArr) {
+		List<T> allExcelData = new ArrayList<>();// excel文件數組
+		List<T> temArrayList = new ArrayList<>();
+		//遍历test.xml路径下所有excel用例文件
 		for (String excelPath : excelPathArr) {
 			File file = Paths.get(System.getProperty("user.dir"),
 					excelPath).toFile();
 			temArrayList.clear();
 			if (sheetNameArr.length == 0 || sheetNameArr[0] == "") {
 				temArrayList = ExcelUtil.readExcel(clz, file.getAbsolutePath());
-			} else {
+			} else {//遍历test.xml用例sheetname
 				for (String sheetName : sheetNameArr) {
 					temArrayList.addAll(ExcelUtil.readExcel(clz,
 							file.getAbsolutePath(), sheetName));
