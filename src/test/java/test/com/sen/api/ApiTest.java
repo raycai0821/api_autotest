@@ -94,7 +94,9 @@ public class ApiTest extends TestBase {
 		Map<String, String> params = apiConfig.getParams();
 		setSaveDates(params);
 
+		//封装请求头
 		List<Header> headers = new ArrayList<Header>();
+		//从配置文件中获取遍历heads
 		apiConfig.getHeaders().forEach((key, value) -> {
 			Header header = new BasicHeader(key, value);
 			if(!requestByFormData && key.equalsIgnoreCase("content-type") && value.toLowerCase().contains("form-data")){
