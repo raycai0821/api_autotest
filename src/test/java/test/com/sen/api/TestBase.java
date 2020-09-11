@@ -1,5 +1,10 @@
 package test.com.sen.api;
 
+import com.alibaba.fastjson.JSONPath;
+import com.sen.api.beans.BaseBean;
+import com.sen.api.utils.*;
+import org.testng.Assert;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -8,17 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.dom4j.DocumentException;
-import org.testng.Assert;
-
-import com.alibaba.fastjson.JSONPath;
-import com.sen.api.beans.BaseBean;
-import com.sen.api.utils.AssertUtil;
-import com.sen.api.utils.ExcelUtil;
-import com.sen.api.utils.FunctionUtil;
-import com.sen.api.utils.ReportUtil;
-import com.sen.api.utils.StringUtil;
 
 public class TestBase {
 

@@ -79,9 +79,9 @@ public class ApiTest extends TestBase {
 	 *
 	 * @throws Exception
 	 */
-	@Parameters("envName")
+	@Parameters("apiconfig")
 	@BeforeSuite
-	public void init(@Optional("api-config.xml") String envName) throws Exception {
+	public void init( String envName) throws Exception {
 		String configFilePath = Paths.get(System.getProperty("user.dir"), envName).toString();
 		System.out.println("env" + envName);
 		ReportUtil.log("api config path:" + configFilePath);
