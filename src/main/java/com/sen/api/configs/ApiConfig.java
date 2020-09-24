@@ -41,9 +41,9 @@ public class ApiConfig {
 	private final String rootUrl;
 	
 	
-	private final Map<String,String> params = new HashMap<String, String>();
+	private final Map<String,String> params = new HashMap<>();
 	
-	private final Map<String,String> headers = new HashMap<String, String>();
+	private final Map<String,String> headers = new HashMap<>();
 
 	public String getRootUrl() {
 		return rootUrl;

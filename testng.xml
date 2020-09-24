@@ -1,38 +1,37 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="æŽ¥å£è‡ªåŠ¨åŒ–æµ‹è¯•" verbose="1" parallel="false">
+<?xml version="1.0" encoding="GB2312" standalone="no"?><suite name="½Ó¿Ú×Ô¶¯»¯²âÊÔ" parallel="false" verbose="1">
 	<parameter name="apiconfig" value="api-config.xml"/>
-	<test name="è‡ªåŠ¨åŒ–æµ‹è¯•ç”¨ä¾‹">
-		<parameter name="excelPath" value="case/api-data.xls"/>
+	<test name="×Ô¶¯»¯²âÊÔÓÃÀý">
+		<parameter name="excelPath" value="D:\eclipse_workspace\api_autotest\upload\api-data2.xls"/>
 		<parameter name="sheetName" value="UPACCT"/>
 		<classes>
-			<class name="test.com.sen.api.ApiTest">
+			<class name="com.sen.api.test.ApiTest">
 				<methods>
 					<include name="apiTest"/>
 				</methods>
 			</class>
 		</classes>
 	</test>
-<!--	<test name="è‡ªåŠ¨åŒ–æµ‹è¯•ç”¨ä¾‹2">-->
-<!--		<parameter name="excelPath" value="case/api-data.xls"/>-->
-<!--		<parameter name="sheetName" value="BALANCE"/>-->
-<!--		<classes>-->
-<!--			<class name="test.com.sen.api.ApiTest">-->
-<!--				<methods>-->
-<!--					<include name="apiTest"/>-->
-<!--				</methods>-->
-<!--			</class>-->
-<!--		</classes>-->
-<!--	</test>-->
+	<!--	<test name="×Ô¶¯»¯²âÊÔÓÃÀý2">-->
+	<!--		<parameter name="excelPath" value="case/api-data.xls"/>-->
+	<!--		<parameter name="sheetName" value="BALANCE"/>-->
+	<!--		<classes>-->
+	<!--			<class name="test.com.sen.api.ApiTest">-->
+	<!--				<methods>-->
+	<!--					<include name="apiTest"/>-->
+	<!--				</methods>-->
+	<!--			</class>-->
+	<!--		</classes>-->
+	<!--	</test>-->
 
 	<listeners>
 		<listener class-name="com.sen.api.listeners.AutoTestListener"/>
 		<listener class-name="com.sen.api.listeners.RetryListener"/>
-		<!-- ReportNg æŠ¥å‘Š  -->
+		<!-- ReportNg ±¨¸æ  -->
 		<!--
 		<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter"></listener>
 		-->
-		<!-- ExtentReport æŠ¥å‘Š  -->
+		<!-- ExtentReport ±¨¸æ  -->
 		<listener class-name="com.sen.api.listeners.ExtentTestNGIReporterListener"/>
 	</listeners>
 </suite>
