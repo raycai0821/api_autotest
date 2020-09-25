@@ -70,7 +70,8 @@ public class FileUploadController {
         }
         if (storagePath != null) {
             XmlHelperUtil.setXmlValue(uploadFilepath);
-            RunXmlUtile.runTestCaseXml();
+            RunXmlUtile runXmlUtile = new RunXmlUtile();
+            runXmlUtile.runTestCaseXml();
             return ResultUtil.success("上传成功!接口测试完成");
         } else return ResultUtil.error("上传失败");
     }

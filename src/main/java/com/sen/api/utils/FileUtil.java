@@ -1,5 +1,8 @@
 package com.sen.api.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,6 +24,9 @@ import java.util.regex.Pattern;
  *
  */
 public class FileUtil {
+
+
+	private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
 	/**
 	 * 多個匹配條件匹配文件（去重）
 	 * 
@@ -133,6 +139,7 @@ public class FileUtil {
 
 	public static boolean writeFile(InputStream is, String filePath) {
 		File file = new File(filePath);
+		logger.info("33333" + file.getParentFile().getName());
 		if (!file.getParentFile().exists()) {
 			file.getParentFile().mkdirs();
 		}

@@ -5,8 +5,10 @@ import com.sen.api.beans.ApiDataBean;
 import com.sen.api.configs.ApiConfig;
 import com.sen.api.listeners.AutoTestListener;
 import com.sen.api.listeners.RetryListener;
-import com.sen.api.utils.*;
-import com.sun.xml.internal.ws.api.message.HeaderList;
+import com.sen.api.utils.FileUtil;
+import com.sen.api.utils.RandomUtil;
+import com.sen.api.utils.ReportUtil;
+import com.sen.api.utils.SSLClient;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -19,7 +21,6 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
-import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.Optional;
@@ -200,8 +201,8 @@ public class ApiTest extends TestBase {
 				String conDisposition = response.getFirstHeader(
 						"Content-disposition").getValue();
 				String fileType = conDisposition.substring(
-						conDisposition.lastIndexOf("."),
-						conDisposition.length());
+						conDisposition.lastIndexOf(".")
+				);
 				String filePath = "download/" + RandomUtil.getRandom(8, false)
 						+ fileType;
 				InputStream is = response.getEntity().getContent();

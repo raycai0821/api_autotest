@@ -34,7 +34,7 @@ public class XmlHelperUtil {
             // 2.从DOM工厂里获取DOM解析器
             DocumentBuilder db = dbf.newDocumentBuilder();
             // 3.解析XML文档，得到document，即DOM树
-            Document doc = db.parse("testng.xml");
+            Document doc = db.parse("/testng.xml");
 
             NodeList list = doc.getElementsByTagName("parameter");
             for (int i = 0; i < list.getLength(); i++) {

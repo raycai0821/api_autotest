@@ -1,9 +1,15 @@
 package com.sen.api.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.TestNG;
 
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * @author leifeng.cai
@@ -12,11 +18,25 @@ import java.util.List;
  **/
 public class RunXmlUtile {
 
-    public static void runTestCaseXml() {
+    private static final Logger logger = LoggerFactory.getLogger(RunXmlUtile.class);
+    private final String filename = "testng.xml";
+    private final String outPutPath = System.getProperty("user.dir") + File.separator +
+            "temp" + File.separator + filename;
+
+    public void runTestCaseXml() {
         TestNG testNG = new TestNG();
         List<String> suites = new ArrayList<>();
-        suites.add(".\\testng.xml");
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename) ;
+        logger.info("---" + outPutPath);
+        FileUtil.writeFile(is, outPutPath);
+        suites.add(outPutPath);
         testNG.setTestSuites(suites);
         testNG.run();
     }
+
+
+    public static void main(String[] args) {
+        new RunXmlUtile().runTestCaseXml();
+    }
+
 }
