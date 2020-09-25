@@ -19,8 +19,14 @@ import java.util.*;
 
 public class ExtentTestNGIReporterListener implements IReporter {
     //生成的路径以及文件名
-    private static final String OUTPUT_FOLDER = "test-output/";
+//    public static final String CURRENT_PATH = System.getProperty("user.dir");
+//
+//    private static final String OUTPUT_FOLDER = CURRENT_PATH + File.separator +  "src/main/resources/templates/";
+//    public static final String OUTPUT_FOLDER = "resources/templates/test-output/";
     private static final String FILE_NAME = "index.html";
+
+    public static final String OUTPUT_FOLDER = "D:\\job\\";
+
 
     private ExtentReports extent;
 
@@ -103,6 +109,7 @@ public class ExtentTestNGIReporterListener implements IReporter {
 
     private void init() {
         //文件夹不存在的话进行创建
+        System.out.println("路径" + OUTPUT_FOLDER);
         File reportDir= new File(OUTPUT_FOLDER);
         if(!reportDir.exists()&& !reportDir .isDirectory()){
             reportDir.mkdir();
