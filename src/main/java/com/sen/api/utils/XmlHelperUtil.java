@@ -11,6 +11,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -22,6 +24,7 @@ import org.w3c.dom.NodeList;
  * @time: 2020/9/23 13:48
  **/
 public class XmlHelperUtil {
+    private static final Logger logger = LoggerFactory.getLogger(XmlHelperUtil.class);
     public static void main(String[] args) {
         new XmlHelperUtil().setXmlValue("1111211","");
     }
@@ -36,7 +39,7 @@ public class XmlHelperUtil {
             // 2.从DOM工厂里获取DOM解析器
             DocumentBuilder db = dbf.newDocumentBuilder();
             // 3.解析XML文档，得到document，即DOM树
-            Document doc = db.parse(newXmlPath + File.separator + "testng.xml");
+            Document doc = db.parse(newXmlPath);
 
             NodeList list = doc.getElementsByTagName("parameter");
             for (int i = 0; i < list.getLength(); i++) {
@@ -45,6 +48,9 @@ public class XmlHelperUtil {
                 if (parameterName.equals("excelPath")) {
                     //属性修改
                     parameterElement.setAttribute("value", value);
+                    logger.info("XML修改成功---修改值为" +  value);
+                    logger.info("新的xml文件路径为" + newXmlPath);
+
                 }
             }
             //保存xml文件
@@ -53,7 +59,7 @@ public class XmlHelperUtil {
             DOMSource domSource = new DOMSource(doc);
             //设置编码类型
             transformer.setOutputProperty(OutputKeys.ENCODING, "GB2312");
-            StreamResult result = new StreamResult(new FileOutputStream("testng.xml"));
+            StreamResult result = new StreamResult(new FileOutputStream(newXmlPath));
             //把DOM树转换为xml文件
             transformer.transform(domSource, result);
 

@@ -41,7 +41,6 @@ public class FileUploadController {
     @RequestMapping("/upload")
     public Result fileUpload(@RequestParam("file") MultipartFile[] multipartFiles) {
         String storagePath = null;
-        String uploadFilepath = null;
         File fileDir = new File(rootPath);
         if (!fileDir.exists() && !fileDir.isDirectory()) {
             fileDir.mkdirs();
@@ -53,7 +52,6 @@ public class FileUploadController {
                     try {
                         //以原来的名称命名,覆盖掉旧的
                         storagePath = rootPath + multipartFiles[i].getOriginalFilename();
-                        uploadFilepath = fileDir + File.separator + multipartFiles[i].getOriginalFilename();
                         logger.info("上传的文件：" + multipartFiles[i].getName() + "," + multipartFiles[i].getContentType() + "," + multipartFiles[i].getOriginalFilename()
                                 + "，保存的路径为：" + storagePath);
                         Streams.copy(multipartFiles[i].getInputStream(), new FileOutputStream(storagePath), true);
@@ -72,7 +70,7 @@ public class FileUploadController {
         }
         if (storagePath != null) {
             RunXmlUtile runXmlUtile = new RunXmlUtile();
-            runXmlUtile.runTestCaseXml(rootPath);
+            runXmlUtile.runTestCaseXml(storagePath);
             return ResultUtil.success("上传成功!接口测试完成");
         } else return ResultUtil.error("上传失败");
     }
