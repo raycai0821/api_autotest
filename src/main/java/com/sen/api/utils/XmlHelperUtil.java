@@ -1,5 +1,6 @@
 package com.sen.api.utils;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -22,19 +23,20 @@ import org.w3c.dom.NodeList;
  **/
 public class XmlHelperUtil {
     public static void main(String[] args) {
-        new XmlHelperUtil().setXmlValue("1111211");
+        new XmlHelperUtil().setXmlValue("1111211","");
     }
     /**
      * @param value 文件存在位置
+     * @param newXmlPath 新的xml保存地址
      */
-    public static void setXmlValue(String value) {
+    public static void setXmlValue(String value, String newXmlPath) {
         try {
             // 1.得到DOM解析器的工厂实例
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             // 2.从DOM工厂里获取DOM解析器
             DocumentBuilder db = dbf.newDocumentBuilder();
             // 3.解析XML文档，得到document，即DOM树
-            Document doc = db.parse("/testng.xml");
+            Document doc = db.parse(newXmlPath + File.separator + "testng.xml");
 
             NodeList list = doc.getElementsByTagName("parameter");
             for (int i = 0; i < list.getLength(); i++) {

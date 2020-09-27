@@ -22,21 +22,25 @@ public class RunXmlUtile {
     private final String filename = "testng.xml";
     private final String outPutPath = System.getProperty("user.dir") + File.separator +
             "temp" + File.separator + filename;
-
-    public void runTestCaseXml() {
+    /**
+     * @param newExcelPath 上传的excel测试用例地址
+    */
+    public void runTestCaseXml(String newExcelPath) {
         TestNG testNG = new TestNG();
         List<String> suites = new ArrayList<>();
+        //获取testng输出流，copy一份到目录下
         InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename) ;
         logger.info("---" + outPutPath);
         FileUtil.writeFile(is, outPutPath);
+        XmlHelperUtil.setXmlValue(newExcelPath,outPutPath);
         suites.add(outPutPath);
         testNG.setTestSuites(suites);
         testNG.run();
     }
 
 
-    public static void main(String[] args) {
-        new RunXmlUtile().runTestCaseXml();
-    }
-
+//    public static void main(String[] args) {
+//        new RunXmlUtile().runTestCaseXml();
+//    }
+//
 }
