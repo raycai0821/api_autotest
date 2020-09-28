@@ -30,7 +30,7 @@ public class ToHtmlController {
         return "index";
     }
 
-    @GetMapping("/testWrite")
+    @GetMapping("/report")
     public void writeHtml(HttpServletResponse response) {
         PrintWriter pw =null;
         response.setHeader("Content-Type","text/html;charset=UTF-8");
