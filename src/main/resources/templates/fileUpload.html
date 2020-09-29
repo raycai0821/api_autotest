@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>接口自动化测试</title>
+</head>
+<body background="/background.png" style=" background-repeat:no-repeat ;background-size:100% 100%;
+background-attachment: fixed;">
+<div class="box"  align="center">
+<form id="uploadForm">
+<h1 style="color: darkblue">自动化接口测试</h1>
+    <p style="text-align: center">请上传excel测试用例</p>
+        <div>
+            <input type="file" name="file"/>
+        </div>
+             <div>&#160</div>
+            <div>
+                <button onclick="doUpload();" class="upload">
+                    <div >上传</div>
+                </button>
+            </div>
+            <div>&#160</div>
+        <div style="text-align: center"><a href="/report" >查看报表</a></div>
+
+
+</form>
+</div>
+<style>
+    .box{
+        border-radius:5px 5px 5px 5px;
+        background-color: #DEE8FC;
+        width: 400px;
+        height: 260px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin:-180px 0 0 -200px;
+    }
+
+
+   .upload {
+        text-decoration:none;
+        background:#2f435e;
+        color:#f2f2f2;
+
+        padding: 10px 30px 10px 30px;
+        font-size: 16px;
+        font-family: 微软雅黑,宋体,Arial,Helvetica,Verdana,sans-serif;
+        font-weight:bold;
+        border-radius:3px;
+
+        -webkit-transition:all linear 0.30s;
+        -moz-transition:all linear 0.30s;
+        transition:all linear 0.30s;
+
+    }
+
+</style>
+
+<script src="/jquery-1.7.1.min.js"></script>
+<script>
+    function doUpload(){
+        const formData = new FormData($("#uploadForm")[0]);
+        $.ajax({
+            url: '/file/upload' ,
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (json) {
+                console.log(json)
+                alert(json.data);
+            },
+            error: function (json) {
+                alert(json.data);
+            }
+
+        })
+    }
+
+</script>
+</body>
+</html>
