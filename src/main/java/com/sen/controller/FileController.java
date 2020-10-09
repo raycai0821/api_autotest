@@ -4,7 +4,6 @@ package com.sen.controller;
 import com.sen.api.utils.Result;
 import com.sen.api.utils.ResultUtil;
 import com.sen.api.utils.RunXmlUtile;
-import com.sun.istack.internal.NotNull;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.http.fileupload.util.Streams;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
