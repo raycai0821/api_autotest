@@ -29,7 +29,7 @@ public class RunXmlUtile {
         TestNG testNG = new TestNG();
         List<String> suites = new ArrayList<>();
         //获取testng输出流，copy一份到目录下
-        InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename) ;
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename);
         logger.info("---" + outPutPath);
         FileUtil.writeFile(is, outPutPath);
         XmlHelperUtil.setXmlValue(newExcelPath,outPutPath);

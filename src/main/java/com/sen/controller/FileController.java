@@ -6,6 +6,7 @@ import com.sen.api.utils.ResultUtil;
 import com.sen.api.utils.RunXmlUtile;
 import com.sun.istack.internal.NotNull;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author leifeng.cai
@@ -28,15 +30,16 @@ import java.io.IOException;
 @RequestMapping("/file")
 //定义RESTFUL格式，有了该注解，在响应返回   的是json格式的数据
 
-public class FileUploadController {
-    private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+public class FileController {
+    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     private final static String fileDir = "upload";
+
+    private final static String excelTemplateName = "static/api-data.xls";
     /**
     * 测试用例保存地址
     * */
     private final static String rootPath = System.getProperty("user.dir") + File.separator + fileDir + File.separator;
-
 
     @RequestMapping("/upload")
     public Result fileUpload(@RequestParam("file") MultipartFile[] multipartFiles) {
@@ -75,5 +78,46 @@ public class FileUploadController {
         } else return ResultUtil.error("上传失败");
     }
 
+    @RequestMapping("/download")
+    public Result dowloadExcelTmp(final HttpServletResponse response){
+            OutputStream os = null;
+            InputStream is= null;
+            try {
+                // 取得输出流
+                os = response.getOutputStream();
+                // 清空输出流
+                response.reset();
+                response.setContentType("application/x-download;charset=GBK");
+                response.setHeader("Content-Disposition", "attachment;filename="+ new String(excelTemplateName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
+                //读取流
 
-}
+                is = this.getClass().getClassLoader().getResourceAsStream(excelTemplateName);
+                //复制
+                IOUtils.copy(is, response.getOutputStream());
+                response.getOutputStream().flush();
+            } catch (IOException e) {
+                return ResultUtil.error("下载附件失败,error:"+e.getMessage());
+            }
+            //文件的关闭放在finally中
+            finally
+            {
+                try {
+                    if (is != null) {
+                        is.close();
+                    }
+                } catch (IOException e) {
+                    logger.error(ExceptionUtils.getFullStackTrace(e));
+                }
+                try {
+                    if (os != null) {
+                        os.close();
+                    }
+                } catch (IOException e) {
+                    logger.error(ExceptionUtils.getFullStackTrace(e));
+                }
+            }
+            return null;
+        }
+    }
+
+

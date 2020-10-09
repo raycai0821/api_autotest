@@ -24,12 +24,6 @@ public class ToHtmlController {
         return "fileUpload";
     }
 
-    @RequestMapping("/report")
-    public String checkReport(){
-
-        return "index";
-    }
-
     @GetMapping("/report")
     public void writeHtml(HttpServletResponse response) {
         PrintWriter pw =null;
