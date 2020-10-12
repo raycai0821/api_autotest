@@ -32,7 +32,7 @@ public class ToHtmlController {
 //            本地调试地址
 //            String str = ResourceUtil.readUtf8Str("/bea/work/apiauto");
 //            docker地址
-            String str = ResourceUtil.readUtf8Str("/report");
+            String str = ResourceUtil.readUtf8Str("/apiautotest/report");
 
             pw = response.getWriter();
             pw.write(str);
