@@ -29,7 +29,11 @@ public class ToHtmlController {
         PrintWriter pw =null;
         response.setHeader("Content-Type","text/html;charset=UTF-8");
         try {
-            String str = ResourceUtil.readUtf8Str("/bea/work/apiauto");
+//            本地调试地址
+//            String str = ResourceUtil.readUtf8Str("/bea/work/apiauto");
+//            docker地址
+            String str = ResourceUtil.readUtf8Str("/report");
+
             pw = response.getWriter();
             pw.write(str);
             pw.flush();

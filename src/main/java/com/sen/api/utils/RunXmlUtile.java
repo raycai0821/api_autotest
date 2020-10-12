@@ -20,8 +20,11 @@ public class RunXmlUtile {
 
     private static final Logger logger = LoggerFactory.getLogger(RunXmlUtile.class);
     private final String filename = "testng.xml";
-    private final String outPutPath = System.getProperty("user.dir") + File.separator +
-            "temp" + File.separator + filename;
+//    本地调试使用这个
+//    private final String outPutPath = System.getProperty("user.dir") + File.separator +
+//            "temp" + File.separator + filename;
+//    docker部署使用这个
+    private final String outPutPath = "/conf" + File.separator + filename;
     /**
      * @param newExcelPath 上传的excel测试用例地址
     */

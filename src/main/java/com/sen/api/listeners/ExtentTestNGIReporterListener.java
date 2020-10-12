@@ -24,9 +24,10 @@ public class ExtentTestNGIReporterListener implements IReporter {
 //    private static final String OUTPUT_FOLDER = CURRENT_PATH + File.separator +  "src/main/resources/templates/";
 //    public static final String OUTPUT_FOLDER = "resources/templates/test-output/";
     private static final String FILE_NAME = "index.html";
-
-    public static final String OUTPUT_FOLDER = "/bea/work/apiauto";
-
+//本地调试地址
+//    public static final String OUTPUT_FOLDER = "/bea/work/apiauto";
+//    docker部署
+    public static final String OUTPUT_FOLDER = "/report";
 
     private ExtentReports extent;
 
