@@ -40,7 +40,7 @@ public class FileController {
 //    本地调试
 //    private final static String rootPath = System.getProperty("user.dir") + File.separator + fileDir + File.separator;
 //    docker
-    private final static String rootPath =  File.separator + "apiautotest" +  fileDir + File.separator;
+    private final static String rootPath =  "/apiautotest" + File.separator + fileDir + File.separator;
 
 
 

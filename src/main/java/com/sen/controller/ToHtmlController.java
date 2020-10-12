@@ -30,7 +30,7 @@ public class ToHtmlController {
         response.setHeader("Content-Type","text/html;charset=UTF-8");
         try {
 //            本地调试地址
-//            String str = ResourceUtil.readUtf8Str("/bea/work/apiauto");
+//            String str = ResourceUtil.readUtf8Str("D:\\job\\index.html");
 //            docker地址
             String str = ResourceUtil.readUtf8Str("/apiautotest/report");
 

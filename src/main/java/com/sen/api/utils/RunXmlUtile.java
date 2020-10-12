@@ -24,7 +24,7 @@ public class RunXmlUtile {
 //    private final String outPutPath = System.getProperty("user.dir") + File.separator +
 //            "temp" + File.separator + filename;
 //    docker部署使用这个
-    private final String outPutPath = "/apiautotest/conf" + File.separator + filename;
+    private final String outPutPath = "/apiautotest/conf/" + filename;
     /**
      * @param newExcelPath 上传的excel测试用例地址
     */

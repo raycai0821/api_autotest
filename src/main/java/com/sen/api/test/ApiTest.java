@@ -85,10 +85,11 @@ public class ApiTest extends TestBase {
 	@Parameters("apiconfig")
 	@BeforeSuite
 	public void init(String envName) throws Exception {
+		System.out.println(envName);
 //		本地调试
-		String configFilePath = Paths.get(System.getProperty("user.dir"), envName).toString();
+//		String configFilePath = Paths.get(System.getProperty("user.dir"), envName).toString();
 //		docker
-//		String configFilePath = "/apiautotest/conf/";
+		String configFilePath = Paths.get("/apiautotest/conf/", envName).toString();
 		ReportUtil.log("api config path:" + configFilePath);
 		apiConfig = new ApiConfig(configFilePath);
 		// 获取基础数据
