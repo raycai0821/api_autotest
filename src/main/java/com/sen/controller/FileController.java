@@ -37,7 +37,11 @@ public class FileController {
     /**
     * 测试用例保存地址
     * */
-    private final static String rootPath = System.getProperty("user.dir") + File.separator + fileDir + File.separator;
+//    本地调试
+//    private final static String rootPath = System.getProperty("user.dir") + File.separator + fileDir + File.separator;
+//    docker
+    private final static String rootPath =  File.separator + "apiautotest" +  fileDir + File.separator;
+
 
 
     @RequestMapping("/test")
