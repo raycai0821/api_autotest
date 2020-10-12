@@ -39,6 +39,12 @@ public class FileController {
     * */
     private final static String rootPath = System.getProperty("user.dir") + File.separator + fileDir + File.separator;
 
+
+    @RequestMapping("/test")
+    public String test(){
+        return "ok";
+    }
+
     @RequestMapping("/upload")
     public Result fileUpload(@RequestParam("file") MultipartFile[] multipartFiles) {
         String storagePath = null;
