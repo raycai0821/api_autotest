@@ -29,7 +29,7 @@ public class ToHtmlController {
         PrintWriter pw =null;
         response.setHeader("Content-Type","text/html;charset=UTF-8");
         try {
-            String str = ResourceUtil.readUtf8Str("D:/job/index.html");
+            String str = ResourceUtil.readUtf8Str("/bea/work/apiauto");
             pw = response.getWriter();
             pw.write(str);
             pw.flush();
