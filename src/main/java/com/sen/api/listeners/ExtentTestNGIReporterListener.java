@@ -116,6 +116,7 @@ public class ExtentTestNGIReporterListener implements IReporter {
             reportDir.mkdir();
         }
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
+        System.out.println("报告地址" + OUTPUT_FOLDER + FILE_NAME);
         htmlReporter.config().setDocumentTitle(ReportUtil.getReportName());
         htmlReporter.config().setReportName(ReportUtil.getReportName());
         htmlReporter.config().setChartVisibilityOnOpen(true);
