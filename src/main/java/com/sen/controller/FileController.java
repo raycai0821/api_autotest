@@ -32,20 +32,24 @@ public class FileController {
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     private final static String fileDir = "upload";
+    //测试使用地址
+//    private final static String excelTemplateName = "static/api-data.xls";
+    //docker 使用地址
+    private final static String excelTemplateName = "/apiautotest/template/api-data.xls";
 
-    private final static String excelTemplateName = "static/api-data.xls";
+
     /**
-    * 测试用例保存地址
-    * */
+     * 测试用例保存地址
+     */
 //    本地调试
 //    private final static String rootPath = System.getProperty("user.dir") + File.separator + fileDir + File.separator;
-//    docker
-    private final static String rootPath =  "/apiautotest" + File.separator + fileDir + File.separator;
 
+//    docker
+    private final static String rootPath = "/apiautotest" + File.separator + fileDir + File.separator;
 
 
     @RequestMapping("/test")
-    public String test(){
+    public String test() {
         return "ok";
     }
 
@@ -87,45 +91,48 @@ public class FileController {
     }
 
     @RequestMapping("/download")
-    public Result dowloadExcelTmp(final HttpServletResponse response){
-            OutputStream os = null;
-            InputStream is= null;
-            try {
-                // 取得输出流
-                os = response.getOutputStream();
-                // 清空输出流
-                response.reset();
-                response.setContentType("application/x-download;charset=GBK");
-                response.setHeader("Content-Disposition", "attachment;filename="+ new String(excelTemplateName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
-                //读取流
+    public Result dowloadExcelTmp(final HttpServletResponse response) {
+        OutputStream os = null;
+        InputStream is = null;
+        try {
+            // 取得输出流
+            os = response.getOutputStream();
+            // 清空输出流
+            response.reset();
+            response.setContentType("application/x-download;charset=GBK");
+            response.setHeader("Content-Disposition", "attachment;filename=" + new String(excelTemplateName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
+            //读取流
+//        本地调试使用
+//                is = this.getClass().getClassLoader().getResourceAsStream(excelTemplateName);
 
-                is = this.getClass().getClassLoader().getResourceAsStream(excelTemplateName);
-                //复制
-                IOUtils.copy(is, response.getOutputStream());
-                response.getOutputStream().flush();
-            } catch (IOException e) {
-                return ResultUtil.error("下载附件失败,error:"+e.getMessage());
-            }
-            //文件的关闭放在finally中
-            finally
-            {
-                try {
-                    if (is != null) {
-                        is.close();
-                    }
-                } catch (IOException e) {
-                    logger.error(ExceptionUtils.getFullStackTrace(e));
-                }
-                try {
-                    if (os != null) {
-                        os.close();
-                    }
-                } catch (IOException e) {
-                    logger.error(ExceptionUtils.getFullStackTrace(e));
-                }
-            }
-            return null;
+//            docker使用
+            is = new FileInputStream(excelTemplateName);
+
+            //复制
+            IOUtils.copy(is, response.getOutputStream());
+            response.getOutputStream().flush();
+        } catch (IOException e) {
+            return ResultUtil.error("下载附件失败,error:" + e.getMessage());
         }
+        //文件的关闭放在finally中
+        finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                logger.error(ExceptionUtils.getFullStackTrace(e));
+            }
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (IOException e) {
+                logger.error(ExceptionUtils.getFullStackTrace(e));
+            }
+        }
+        return null;
     }
+}
 
 

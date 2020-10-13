@@ -27,7 +27,7 @@ public class ExtentTestNGIReporterListener implements IReporter {
 //本地调试地址
 //    public static final String OUTPUT_FOLDER = "/bea/work/apiauto";
 //    docker部署
-    public static final String OUTPUT_FOLDER = "/report";
+    public static final String OUTPUT_FOLDER = "/apiautotest/report";
 
     private ExtentReports extent;
 
