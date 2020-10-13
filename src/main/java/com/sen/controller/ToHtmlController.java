@@ -32,7 +32,7 @@ public class ToHtmlController {
 //            本地调试地址
 //            String str = ResourceUtil.readUtf8Str("D:\\job\\index.html");
 //            docker地址
-            String str = ResourceUtil.readUtf8Str("/apiautotest/report");
+            String str = ResourceUtil.readUtf8Str("/apiautotest/report/index.html");
 
             pw = response.getWriter();
             pw.write(str);
